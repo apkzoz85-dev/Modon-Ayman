@@ -18,7 +18,7 @@ export default function Page() {
         <div className="ribbon-rule mx-auto mt-6 w-40" />
         <p className="mt-6 text-[15px] leading-8 text-paper/70">
           سيتواصل معك أحد مستشاري المبيعات خلال دقائق لإرسال جدول الأسعار
-          والمساقط والمتاح الحالي من شاليهات يم بوليفارد.
+          والمساقط والمتاح الحالي من يم بوليفارد ووادي إيست.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a

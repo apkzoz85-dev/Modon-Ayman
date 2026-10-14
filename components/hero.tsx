@@ -1,4 +1,4 @@
-import { site, fmt, minPrice, units } from "@/lib/site";
+import { site, fmt, minPrice, countBy } from "@/lib/site";
 import { Ribbon } from "./ui";
 import CtaWhatsapp from "./cta-whatsapp";
 import LeadForm from "./lead-form";
@@ -6,8 +6,8 @@ import LeadForm from "./lead-form";
 const stats = [
   { value: "5%", label: "مقدم التعاقد" },
   { value: "8", label: "سنوات تقسيط" },
-  { value: "145", label: "م² شاليه غرفتين" },
-  { value: "194", label: "م² شاليه 3 غرف" },
+  { value: "145", label: "م² أصغر شاليه" },
+  { value: "384", label: "م² أكبر فيلا" },
 ];
 
 export default function Hero() {
@@ -25,23 +25,23 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-28">
         <div className="inline-flex items-center gap-3 rounded-full border border-brass-2/40 bg-ink/60 px-5 py-2 text-sm text-paper/85 backdrop-blur">
           <span className="h-2 w-2 rounded-full bg-brass-2" />
-          مطروح الآن: يم بوليفارد · {units[0].count} شاليه غرفتين · {units[1].count} شاليه 3 غرف
+          مطروح الآن في وادي يم: {countBy("chalet")} شاليه · {countBy("townhouse")} تاون هاوس · {countBy("villa")} فيلا مستقلة
         </div>
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[1.1fr_420px]">
           <div>
-            <p className="eyebrow">Yemm Boulevard · Wadi Yemm · Ras El Hekma</p>
+            <p className="eyebrow">Yemm Boulevard · Wadi East · Ras El Hekma</p>
             <h1 className="mt-4 text-4xl leading-[1.25] text-paper md:text-6xl">
-              شاليهات يم بوليفارد
+              مدن رأس الحكمة
               <span className="mt-2 block text-2xl text-paper/80 md:text-3xl">
-                مدن رأس الحكمة — وادي يم
+                وادي يم — شاليهات · تاون هاوس · فلل
               </span>
             </h1>
             <Ribbon light />
             <p className="mt-4 max-w-xl text-lg leading-9 text-paper/80">
-              شاليهات غرفتين و3 غرف على البوليفارد الرئيسي لوادي يم، من مدن
-              القابضة الإماراتية. مساحات من 145 حتى 207 م² بتراسات خاصة وغرفة
-              مربية، بأسعار تبدأ من{" "}
+              شاليهات غرفتين و3 غرف في يم بوليفارد، وتاون هاوس وفلل بحمام سباحة
+              خاص في وادي إيست، من مدن القابضة الإماراتية. مساحات من 145 حتى 384
+              م² بأسعار تبدأ من{" "}
               <span className="num text-brass-2">{fmt(minPrice)}</span> جنيه.
             </p>
 
@@ -53,7 +53,7 @@ export default function Hero() {
                 تصفّح الوحدات والأسعار
               </a>
               <CtaWhatsapp
-                message="مهتم بشاليهات يم بوليفارد — مدن رأس الحكمة. برجاء إرسال جدول الأسعار."
+                message="مهتم بوحدات وادي يم — مدن رأس الحكمة. برجاء إرسال جدول الأسعار."
                 className="rounded-full border border-paper/30 px-7 py-3 font-semibold text-paper transition hover:border-brass-2 hover:text-brass-2"
               >
                 واتساب مباشر
@@ -80,7 +80,7 @@ export default function Hero() {
             <p className="eyebrow">Register Interest</p>
             <h2 className="mt-2 text-xl text-ink">استلم جدول الأسعار</h2>
             <p className="mt-2 text-sm leading-7 text-ink/60">
-              أسعار ومساقط شاليهات الغرفتين و3 غرف والمتاح الحالي.
+              أسعار ومساقط الشاليهات والتاون هاوس والفلل والمتاح الحالي.
             </p>
             <div className="mt-5">
               <LeadForm compact />

@@ -7,7 +7,7 @@ import { track } from "@/lib/track";
 import LeadForm from "./lead-form";
 
 const WA_MSG =
-  "مهتم بشاليهات يم بوليفارد — مدن رأس الحكمة. برجاء إرسال الأسعار والتفاصيل.";
+  "مهتم بوحدات وادي يم — مدن رأس الحكمة. برجاء إرسال الأسعار والتفاصيل.";
 
 export function FloatingCtas() {
   return (
@@ -110,7 +110,7 @@ export function LeadPopup() {
         <p className="eyebrow">Price List</p>
         <h3 className="mt-3 text-2xl text-ink">استلم جدول الأسعار</h3>
         <p className="mt-3 text-[15px] leading-8 text-ink/70">
-          اترك رقمك ويصلك جدول أسعار شاليهات الغرفتين و3 غرف والمتاح الحالي خلال دقائق.
+          اترك رقمك ويصلك جدول أسعار الشاليهات والتاون هاوس والفلل والمتاح الحالي خلال دقائق.
         </p>
         <div className="mt-6">
           <LeadForm compact />
@@ -162,7 +162,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="num text-lg tracking-[0.28em] text-paper">MODON</p>
-            <p className="mt-2 text-sm text-brass-2">يم بوليفارد — وادي يم</p>
+            <p className="mt-2 text-sm text-brass-2">رأس الحكمة — وادي يم</p>
             <p className="mt-4 text-sm leading-7 text-paper/60">
               سيدي حنيش، رأس الحكمة، الساحل الشمالي، مصر.
             </p>

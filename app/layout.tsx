@@ -5,8 +5,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "يم بوليفارد مدن رأس الحكمة | شاليهات غرفتين و3 غرف — وادي يم",
-  description: `شاليهات يم بوليفارد في وادي يم مدن رأس الحكمة من مدن القابضة. غرفتين 145–159 م² و3 غرف 194–207 م² تبدأ من ${fmt(
+  title: "مدن رأس الحكمة وادي يم | شاليهات يم بوليفارد وفلل وتاون هاوس وادي إيست",
+  description: `شاليهات يم بوليفارد وتاون هاوس وفلل وادي إيست في وادي يم مدن رأس الحكمة من مدن القابضة. مساحات 145–384 م² تبدأ من ${fmt(
     minPrice
   )} جنيه، مقدم 5% وتقسيط 8 سنوات.`,
   keywords: [
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     "شاليهات رأس الحكمة",
     "شاليه غرفتين رأس الحكمة",
     "شاليه 3 غرف الساحل الشمالي",
+    "وادي إيست",
+    "Wadi East",
+    "فلل رأس الحكمة",
+    "تاون هاوس رأس الحكمة",
     "شقق الساحل الشمالي",
     "مدن القابضة",
   ],
@@ -27,15 +31,15 @@ export const metadata: Metadata = {
     locale: "ar_EG",
     url: site.url,
     siteName: site.project,
-    title: "شاليهات يم بوليفارد — مدن رأس الحكمة",
+    title: "مدن رأس الحكمة — وادي يم",
     description:
-      "شاليهات غرفتين و3 غرف على بوليفارد وادي يم. مقدم 5% وتقسيط 8 سنوات.",
+      "شاليهات يم بوليفارد وتاون هاوس وفلل وادي إيست. مقدم 5% وتقسيط 8 سنوات.",
     images: [{ url: "/images/blvd-hero.webp", width: 1920, height: 1254 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "يم بوليفارد — مدن رأس الحكمة",
-    description: "شاليهات غرفتين و3 غرف. مقدم 5% وتقسيط 8 سنوات.",
+    title: "مدن رأس الحكمة — وادي يم",
+    description: "شاليهات وتاون هاوس وفلل. مقدم 5% وتقسيط 8 سنوات.",
     images: ["/images/blvd-hero.webp"],
   },
   robots: { index: true, follow: true },
@@ -66,7 +70,7 @@ const jsonLd = {
     },
     {
       "@type": "Place",
-      name: "Yemm Boulevard Apartments — Modon Ras El Hekma",
+      name: "Modon Ras El Hekma — Wadi Yemm (Yemm Boulevard & Wadi East)",
       description:
         "مدينة ساحلية متكاملة في رأس الحكمة على البحر المتوسط من تطوير مدن القابضة الإماراتية، بواجهة بحرية 44 كم وملاعب جولف.",
       address: {

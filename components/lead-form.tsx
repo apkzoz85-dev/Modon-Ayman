@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { site, units } from "@/lib/site";
+import { site, units, projectById } from "@/lib/site";
 import { track } from "@/lib/track";
 import { Reveal, Heading } from "./ui";
 import CtaWhatsapp from "./cta-whatsapp";
 
 const interests = [
-  "يم بوليفارد — شاليه غرفتين",
-  "يم بوليفارد — شاليه 3 غرف",
+  ...units.map((u) => `${projectById(u.project).name} — ${u.title}`),
   "غير محدد / أريد استشارة",
 ];
 
@@ -136,13 +135,13 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
           <Heading
             eyebrow="Register Interest"
             title="سجّل اهتمامك واستلم جدول الأسعار"
-            sub="سنرسل لك جدول الأسعار، مساقط الشاليهات، والمتاح الحالي في يم بوليفارد."
+            sub="سنرسل لك جدول الأسعار، المساقط، والمتاح الحالي في يم بوليفارد ووادي إيست."
           />
           <ul className="mt-8 space-y-3 text-[15px] text-ink/75">
             {units.map((u) => (
               <li key={u.id} className="flex gap-3">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" />
-                شاليه {u.beds}: {u.count} وحدة متاحة
+                {u.title}: {u.count === 1 ? "وحدة واحدة متاحة" : `${u.count} وحدة متاحة`}
               </li>
             ))}
             <li className="flex gap-3">
@@ -151,7 +150,7 @@ export default function LeadForm({ compact = false }: { compact?: boolean }) {
             </li>
           </ul>
           <CtaWhatsapp
-            message="مهتم بشاليهات يم بوليفارد — مدن رأس الحكمة. برجاء التواصل."
+            message="مهتم بوحدات وادي يم — مدن رأس الحكمة. برجاء التواصل."
             className="mt-8 inline-block text-[15px] text-ink underline underline-offset-8 transition hover:text-brass"
           >
             أو تواصل عبر واتساب مباشرة

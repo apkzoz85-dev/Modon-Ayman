@@ -6,7 +6,7 @@ import { site, waLink } from "@/lib/site";
 import { track } from "@/lib/track";
 
 const nav = [
-  { href: "#products", label: "يم بوليفارد" },
+  { href: "#products", label: "المشروعات" },
   { href: "#plans", label: "المساقط" },
   { href: "#units", label: "الوحدات والأسعار" },
   { href: "#compare", label: "مقارنة" },

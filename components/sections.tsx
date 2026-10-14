@@ -71,11 +71,15 @@ const shots = [
   { src: "/images/blvd-park.webp", alt: "حدائق يم بوليفارد" },
   { src: "/images/blvd-pool-2.webp", alt: "حمام سباحة بين مباني يم بوليفارد" },
   { src: "/images/blvd-garden.webp", alt: "ممرات مشاة مشجّرة" },
-  { src: "/images/int-2br-kitchen.webp", alt: "مطبخ شاليه غرفتين" },
-  { src: "/images/int-3br-dining.webp", alt: "ليفينج وسفرة شاليه 3 غرف" },
+  { src: "/images/we-lagoon.webp", alt: "لاجون وادي إيست" },
+  { src: "/images/villa-5br-med.webp", alt: "فيلا Mediterranean بحمام سباحة خاص" },
+  { src: "/images/we-pool.webp", alt: "حمام سباحة خاص في فلل وادي إيست" },
+  { src: "/images/th-3br-b.webp", alt: "تاون هاوس وادي إيست" },
+  { src: "/images/int-villa-living.webp", alt: "ليفينج فيلا وادي إيست" },
+  { src: "/images/int-th-dining.webp", alt: "سفرة ومطبخ تاون هاوس" },
+  { src: "/images/int-2br-kitchen.webp", alt: "مطبخ شاليه يم بوليفارد" },
   { src: "/images/blvd-sunset.webp", alt: "يم بوليفارد وقت الغروب" },
-  { src: "/images/blvd-terrace.webp", alt: "تراس خاص بإطلالة على البوليفارد" },
-  { src: "/images/promenade.webp", alt: "ممشى الواجهة البحرية" },
+  { src: "/images/we-streets.webp", alt: "شوارع وادي إيست المشجّرة" },
 ];
 
 export function Gallery() {
@@ -86,8 +90,8 @@ export function Gallery() {
           <Heading
             light
             eyebrow="Gallery"
-            title="من داخل يم بوليفارد"
-            sub="صور رسمية من كتيب المطور للمباني والحدائق والتشطيبات الداخلية."
+            title="من داخل وادي يم"
+            sub="صور رسمية من كتيبات المطور: يم بوليفارد ووادي إيست."
           />
         </Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

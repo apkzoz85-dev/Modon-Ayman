@@ -1,4 +1,4 @@
-import { infrastructure, investment, units, fmt } from "@/lib/site";
+import { infrastructure, investment, units, fmt, categories, projectById, countBy, plan } from "@/lib/site";
 import { Reveal, Heading } from "./ui";
 import CtaWhatsapp from "./cta-whatsapp";
 
@@ -66,18 +66,23 @@ export function Investment() {
 }
 
 export function Compare() {
-  const [a, b] = units;
-  const rows: { label: string; a: string; b: string }[] = [
-    { label: "يبدأ من", a: `${fmt(a.price)} جنيه`, b: `${fmt(b.price)} جنيه` },
-    { label: "المساحة الإجمالية", a: `${a.layouts[0].total} – ${a.layouts[1].total} م²`, b: `${b.layouts[0].total} – ${b.layouts[1].total} م²` },
-    { label: "التراسات", a: `${a.layouts[0].terrace} – ${a.layouts[1].terrace} م²`, b: `${b.layouts[0].terrace} – ${b.layouts[1].terrace} م²` },
-    { label: "غرف النوم", a: "ماستر + غرفة", b: "ماستر بتراس + غرفتين" },
-    { label: "غرفة مربية", a: "بحمام خاص", b: "بحمام خاص" },
-    { label: "المتاح", a: `${a.count} وحدة`, b: `${b.count} وحدة` },
-    { label: "السداد", a: "مقدم 5% · 8 سنوات", b: "مقدم 5% · 8 سنوات" },
-    { label: "الأنسب لـ", a: "أقل نقطة دخول واستثمار إيجاري", b: "العائلات والإقامة الطويلة" },
+  const cols = categories.map((c) => {
+    const list = units.filter((u) => u.category === c.id);
+    const totals = list.flatMap((u) => u.layouts.map((l) => l.total));
+    const beds = list.map((u) => u.beds);
+    return { c, list, minA: Math.min(...totals), maxA: Math.max(...totals), minB: Math.min(...beds), maxB: Math.max(...beds) };
+  });
+  const range = (a: number, b: number) => (a === b ? `${a}` : `${a} – ${b}`);
+  const rows: { label: string; v: string[] }[] = [
+    { label: "المشروع", v: cols.map((x) => projectById(x.list[0].project).name) },
+    { label: "تبدأ من", v: cols.map((x) => `${fmt(Math.min(...x.list.map((u) => u.price)))} جنيه`) },
+    { label: "المساحة", v: cols.map((x) => `${range(x.minA, x.maxA)} م²`) },
+    { label: "غرف النوم", v: cols.map((x) => range(x.minB, x.maxB)) },
+    { label: "المتاح", v: cols.map((x) => `${countBy(x.c.id)} وحدة`) },
+    { label: "مميزات", v: ["تراسات خاصة · غرفة مربية · بوليفارد ريتيل", "جراج سيارتين · حديقة · مكتب / غرفة أرضي", "حمام سباحة خاص · غرفة سائق ومربية · ضيوف"] },
+    { label: "السداد", v: cols.map(() => `مقدم ${plan.down}% · ${plan.years} سنوات`) },
+    { label: "الأنسب لـ", v: ["أقل نقطة دخول واستثمار إيجاري", "العائلات ومساحة بسعر أقل من الفيلا", "خصوصية كاملة وسكن عائلي فاخر"] },
   ];
-  const head = [a, b].map((u) => ({ nameEn: u.bedsEn, name: `شاليه ${u.beds}` }));
 
   return (
     <section id="compare" className="bg-sand/40 py-20">
@@ -85,35 +90,24 @@ export function Compare() {
         <Reveal>
           <Heading
             eyebrow="Side by Side"
-            title="غرفتين ولا 3 غرف؟"
-            sub="مقارنة مباشرة بين النوعين قبل اتخاذ القرار."
+            title="شاليه ولا تاون هاوس ولا فيلا؟"
+            sub="مقارنة مباشرة بين الأنواع الثلاثة المطروحة في وادي يم."
           />
         </Reveal>
 
         <Reveal delay={60}>
           <div className="mt-10 overflow-x-auto">
-            <table className="w-full min-w-[640px] border-collapse text-start">
+            <table className="w-full min-w-[760px] border-collapse text-start">
               <thead>
                 <tr>
-                  <th className="w-40 border-b border-sand-2 p-4 text-start text-sm font-normal text-ink/50">
+                  <th className="w-36 border-b border-sand-2 p-4 text-start text-sm font-normal text-ink/50">
                     البند
                   </th>
-                  <th className="border-b border-sand-2 p-4 text-start">
-                    <span className="num block text-sm tracking-[0.14em] text-brass">
-                      {head[0].nameEn}
-                    </span>
-                    <span className="mt-1 block text-base text-ink">
-                      {head[0].name}
-                    </span>
-                  </th>
-                  <th className="border-b border-sand-2 p-4 text-start">
-                    <span className="num block text-sm tracking-[0.14em] text-brass">
-                      {head[1].nameEn}
-                    </span>
-                    <span className="mt-1 block text-base text-ink">
-                      {head[1].name}
-                    </span>
-                  </th>
+                  {cols.map((x) => (
+                    <th key={x.c.id} className="border-b border-sand-2 p-4 text-start">
+                      <span className="block text-lg text-ink">{x.c.plural}</span>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
@@ -122,12 +116,11 @@ export function Compare() {
                     <td className="border-b border-sand-2 p-4 align-top text-sm text-ink/55">
                       {r.label}
                     </td>
-                    <td className="border-b border-sand-2 p-4 align-top text-[15px] text-ink">
-                      {r.a}
-                    </td>
-                    <td className="border-b border-sand-2 p-4 align-top text-[15px] text-ink">
-                      {r.b}
-                    </td>
+                    {r.v.map((v, i) => (
+                      <td key={i} className="border-b border-sand-2 p-4 align-top text-[15px] text-ink">
+                        {v}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -137,7 +130,7 @@ export function Compare() {
 
         <Reveal delay={100}>
           <CtaWhatsapp
-            message="محتاج استشارة: أنسب لي شاليه غرفتين ولا 3 غرف في يم بوليفارد — مدن رأس الحكمة؟"
+            message="محتاج استشارة: أنسب لي شاليه ولا تاون هاوس ولا فيلا في وادي يم — مدن رأس الحكمة؟"
             className="mt-8 inline-block rounded-full bg-ink px-7 py-3 text-sm font-semibold text-paper transition hover:bg-ink-2"
           >
             اطلب استشارة لتحديد الأنسب

@@ -1,16 +1,16 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { units, boulevard, fmt } from "@/lib/site";
+import { units, plan, fmt, projectById, areaRange } from "@/lib/site";
 import { Reveal, Heading } from "./ui";
 import CtaWhatsapp from "./cta-whatsapp";
 
 const options = units.map((u) => ({
   id: u.id,
-  label: `يم بوليفارد — شاليه ${u.beds}`,
+  label: `${projectById(u.project).name} — ${u.title}`,
   price: u.price,
-  area: `${u.layouts[0].total}–${u.layouts[1].total} م²`,
-  years: boulevard.years,
+  area: `${areaRange(u)} م²`,
+  years: plan.years,
 }));
 
 export default function Calculator() {
