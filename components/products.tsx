@@ -121,10 +121,10 @@ function FloorPlans() {
           />
         </Reveal>
 
-        <div className="mt-9 space-y-3">
-          {categories.map((c) => (
-            <div key={c.id} className="flex flex-wrap items-center gap-2">
-              <span className="w-20 shrink-0 text-xs text-ink/50">{c.plural}</span>
+        <div className="-mx-5 mt-9 flex gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
+          {categories.map((c, ci) => (
+            <div key={c.id} className="flex shrink-0 items-center gap-2">
+              {ci > 0 && <span className="mx-1 h-6 w-px bg-sand-2" />}
               {units
                 .filter((x) => x.category === c.id)
                 .map((x) => (
@@ -134,10 +134,10 @@ function FloorPlans() {
                       setUid(x.id);
                       setLi(0);
                     }}
-                    className={`rounded-full px-4 py-2 text-sm transition ${
+                    className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm transition ${
                       uid === x.id
                         ? "bg-ink font-semibold text-paper"
-                        : "border border-sand-2 text-ink/70 hover:border-brass"
+                        : "border border-sand-2 bg-white/50 text-ink/70 hover:border-brass"
                     }`}
                   >
                     {x.title}
@@ -145,37 +145,37 @@ function FloorPlans() {
                 ))}
             </div>
           ))}
-          {u.layouts.length > 1 && (
-            <div className="flex flex-wrap items-center gap-2 pt-2">
-              <span className="w-20 shrink-0 text-xs text-ink/50">التصميم</span>
-              {u.layouts.map((x, i) => (
-                <button
-                  key={x.name}
-                  onClick={() => setLi(i)}
-                  className={`rounded-full px-5 py-2 text-sm transition ${
-                    l === x
-                      ? "bg-brass font-semibold text-paper"
-                      : "border border-sand-2 text-ink/70 hover:border-brass"
-                  }`}
-                >
-                  {x.name}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
+        {u.layouts.length > 1 && (
+          <div className="mt-3 flex items-center gap-2">
+            <span className="text-xs text-ink/50">التصميم:</span>
+            {u.layouts.map((x) => (
+              <button
+                key={x.name}
+                onClick={() => setLi(u.layouts.indexOf(x))}
+                className={`rounded-full px-4 py-1.5 text-sm transition ${
+                  l === x
+                    ? "bg-brass font-semibold text-paper"
+                    : "border border-sand-2 text-ink/70 hover:border-brass"
+                }`}
+              >
+                {x.name}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="mt-8 grid gap-6 lg:grid-cols-5">
-          <div className="slab flex items-center justify-center bg-white p-5 shadow-sm lg:col-span-3">
+          <div className="flex items-center justify-center rounded-2xl bg-white p-4 shadow-sm md:p-6 lg:col-span-3">
             <img
               key={l.plan}
               src={l.plan}
               alt={`مسقط ${u.title} ${l.name} — وادي يم رأس الحكمة`}
-              className="max-h-[620px] w-auto object-contain"
+              className="max-h-[420px] w-auto max-w-full object-contain md:max-h-[620px]"
             />
           </div>
 
-          <div className="slab-dark p-7 lg:col-span-2">
+          <div className="rounded-2xl bg-ink-2 p-6 text-paper md:p-7 lg:col-span-2">
             <p className="num text-sm tracking-[0.14em] text-brass-2">
               {u.titleEn} · {l.nameEn}
             </p>
