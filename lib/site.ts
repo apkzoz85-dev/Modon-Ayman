@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────
 
 export const site = {
-  url: "https://modon-raselhekma.org", // ← غيّرها بالدومين الفعلي
+  url: "https://www.modonraselhikmaa.org", // ← غيّرها بالدومين الفعلي
   agency: "Nurline",
   project: "مدن رأس الحكمة",
   projectEn: "Modon Ras El Hekma",
@@ -12,11 +12,11 @@ export const site = {
   developer: "مدن القابضة الإماراتية",
   developerEn: "Modon Holding",
 
-  phone: "01040779799",
-  phoneIntl: "+201040779799",
-  phoneDisplay: "01040779799",
-  whatsapp: "201040779799",
-  email: "mostafaraafat135@gmail.com",
+  phone: "01202220383",
+  phoneIntl: "+201202220383",
+  phoneDisplay: "01202220383",
+  whatsapp: "201202220383",
+  email: "",
 
   // ← ضع مفتاح Web3Forms هنا قبل النشر
   web3forms: "8eb13b87-e5e9-4dd4-86b3-7ea70235387e",
